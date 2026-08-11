@@ -9,7 +9,7 @@
     var h=this.save.offline(); if(h>0){var n=this.rate()*h*3600;this.coins+=n;this.ui.offline(h,n)}
     this.last=performance.now(); requestAnimationFrame(this.loop.bind(this));
   }
-  Game.prototype.spawn=function(){var self=this;CAT_CONFIG.forEach(function(c,i){var cat=new CC.Cat(c,90+(i%3)*190,180+Math.floor(i/3)*180);cat.active=!!self.owned[c.id];self.scene.add(cat)})};
+  Game.prototype.spawn=function(){var self=this;CAT_CONFIG.forEach(function(c,i){var cat=new CC.Cat(c,self.scene.w*(.2+(i%3)*.3),self.scene.h*(.72+(i%3)*.06));cat.active=!!self.owned[c.id];self.scene.add(cat)})};
   Game.prototype.rate=function(){var self=this;return this.scene?this.scene.cats.reduce(function(n,c){return n+(c.active?c.def.baseOutput*(RARITY_MULT[c.def.rarity]||1)*self.upgrade.mult(c.def):0)},0):0};
   Game.prototype.emit=function(x,y){this.coins+=1;this.scene.emit(x,y);CC.Audio.coin()};
   Game.prototype.loop=function(t){var dt=Math.min(.1,(t-this.last)/1000);this.last=t;this.coins+=this.rate()*dt;this.scene.update(dt);this.scene.draw();this.ui.hud();requestAnimationFrame(this.loop.bind(this))};
