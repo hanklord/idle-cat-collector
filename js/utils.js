@@ -1,0 +1,1 @@
+(function(){window.CC=window.CC||{};CC.clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};CC.format=function(v){return v<1000?v.toFixed(v%1?1:0):v.toLocaleString('en-US',{maximumFractionDigits:1})};CC.random=function(a,b){return a+Math.random()*(b-a)}})();
